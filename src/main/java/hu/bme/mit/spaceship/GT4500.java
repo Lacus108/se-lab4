@@ -50,12 +50,12 @@ public class GT4500 implements SpaceShip {
 
         switch (firingMode) {
             case SINGLE:
-                if (wasPrimaryFiredLast) {
+                if (wasPrimaryFiredLast) { // MÁSODLAGOS ITT
                     // try to fire the secondary first
                     if (!secondaryTorpedoStore.isEmpty()) {
                         firingSuccess = secondaryTorpedoStore.fire(1);
                         wasPrimaryFiredLast = false;
-                    } else {
+                    } else { // MÁSODLAGOS ÜRES, VISSZA ELSŐ
                         // although primary was fired last time, but the secondary is empty
                         // thus try to fire primary again
                         if (!primaryTorpedoStore.isEmpty()) {
@@ -65,7 +65,7 @@ public class GT4500 implements SpaceShip {
 
                         // if both of the stores are empty, nothing can be done, return failure
                     }
-                } else {
+                } else { // ELSŐDLEGES ITT
                     // try to fire the primary first
                     if (!primaryTorpedoStore.isEmpty()) {
                         firingSuccess = primaryTorpedoStore.fire(1);
