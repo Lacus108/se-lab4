@@ -17,7 +17,8 @@ public class CommandLineInterface {
         "HELP", CommandLineInterface::handleHelp,
         "GT4500", CommandLineInterface::handleGT4500,
         "TORPEDO", CommandLineInterface::handleTorpedo,
-        "EXIT", CommandLineInterface::handleExit
+        "EXIT", CommandLineInterface::handleExit,
+        "NUM", CommandLineInterface::handleNum
     );
 
     public static void main(String[] args) {
@@ -158,6 +159,21 @@ public class CommandLineInterface {
      */
     private static CommandResult handleExit(Context ctx, String[] params) {
         return CommandResult.EXIT;
+    }
+
+    // ADDITION: METHOD RETURNING NUBMER OF TORPEDOES IN EACH BANK
+
+    private static CommandResult handleNum(Context ctx, String[] params) {
+        
+        TorpedoStore S1 = ctx.ship.getStore1();
+        TorpedoStore S2 = ctx.ship.getStore2();
+        
+        ctx.out.print("R:");
+        ctx.out.print(S1.getTorpedoCount());
+        ctx.out.print("L:");
+        ctx.out.println(S2.getTorpedoCount());
+
+        return CommandResult.CONTINUE;
     }
 
     private static class Context {

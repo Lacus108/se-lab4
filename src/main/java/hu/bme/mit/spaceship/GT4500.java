@@ -102,4 +102,11 @@ public class GT4500 implements SpaceShip {
         return firingSuccess;
     }
 
+    public TorpedoStore getStore1() {
+        return primaryTorpedoStore;
+    }
+    public TorpedoStore getStore2() {
+        return secondaryTorpedoStore;
+    }
+
 }
