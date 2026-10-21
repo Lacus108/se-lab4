@@ -48,14 +48,13 @@ public class GT4500 implements SpaceShip {
 
         boolean firingSuccess = false;
 
-        switch (firingMode) {
-            case SINGLE:
-                if (wasPrimaryFiredLast) {
+        if (firingMode == FiringMode.SINGLE) {
+                if (wasPrimaryFiredLast) { // MÁSODLAGOS ITT
                     // try to fire the secondary first
                     if (!secondaryTorpedoStore.isEmpty()) {
                         firingSuccess = secondaryTorpedoStore.fire(1);
                         wasPrimaryFiredLast = false;
-                    } else {
+                    } else { // MÁSODLAGOS ÜRES, VISSZA ELSŐ
                         // although primary was fired last time, but the secondary is empty
                         // thus try to fire primary again
                         if (!primaryTorpedoStore.isEmpty()) {
@@ -65,7 +64,7 @@ public class GT4500 implements SpaceShip {
 
                         // if both of the stores are empty, nothing can be done, return failure
                     }
-                } else {
+                } else { // ELSŐDLEGES ITT
                     // try to fire the primary first
                     if (!primaryTorpedoStore.isEmpty()) {
                         firingSuccess = primaryTorpedoStore.fire(1);
@@ -81,9 +80,8 @@ public class GT4500 implements SpaceShip {
                         // if both of the stores are empty, nothing can be done, return failure
                     }
                 }
-                break;
 
-            case ALL:
+        } else {
                 // try to fire both of the torpedo stores
                 boolean primarySuccess = false;
                 boolean secondarySuccess = false;
@@ -96,10 +94,16 @@ public class GT4500 implements SpaceShip {
                 }
 
                 firingSuccess = primarySuccess || secondarySuccess;
-                break;
         }
 
         return firingSuccess;
+    }
+
+    public TorpedoStore getStore1() {
+        return primaryTorpedoStore;
+    }
+    public TorpedoStore getStore2() {
+        return secondaryTorpedoStore;
     }
 
 }

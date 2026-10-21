@@ -1,0 +1,10 @@
+SUCCESS
+SUCCESS
+SUCCESS
+SUCCESS
+SUCCESS
+SUCCESS
+SUCCESS
+SUCCESS
+
+# Mivel alternálnia kéne csak akkor ha nem üres a következő tár, ezért mindig SUCCESS-nek kell lennie.
